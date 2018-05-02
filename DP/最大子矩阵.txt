@@ -1,0 +1,48 @@
+没什么好说的， 死记套路。
+1、d[i][j]为i行前j项和
+2、循环打擂，套两层for ， 表示从i-1列到j列.
+3、里层的for计算每一行。sum+=p[k][j]-p[k][i-1];
+4、类似最大子序列， 小于零不要， 大于零加起来。
+
+
+
+#include <iostream>
+
+using namespace std;
+int p[102][102];
+int main()
+{
+    int n;
+
+    cin>>n;
+    for(int i=1; i<=n; i++)
+        for(int j=1; j<=n; j++)
+        {
+            int temp;
+            cin>>temp;
+            p[i][j]+=p[i][j-1]+temp;
+        }
+
+    int Max=-10000;
+    for(int i=1; i<=n; i++)
+        for(int j=i; j<=n; j++)
+        {
+            int sum=0;
+            for(int k=1; k<=n; k++)
+            {
+                if(sum<0)
+                    sum=0;
+
+                sum+=p[k][j]-p[k][i-1];
+
+                if(sum>Max)
+                    Max=sum;
+            }
+
+        }
+
+    cout<<Max<<endl;
+
+
+    return 0;
+}
