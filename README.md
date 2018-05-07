@@ -1,1 +1,1 @@
-# Algorithm-in-contest
+收集比赛中常见的算法，加深对其理解
